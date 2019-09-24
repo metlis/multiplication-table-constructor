@@ -1,6 +1,7 @@
 <template>
     <div>
-        <slider-picker v-model="colors" />
+        <label for="colorPicker">Цвет</label><br>
+        <slider-picker id="colorPicker" v-model="colors" />
     </div>
 </template>
 
@@ -27,6 +28,11 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  div
+    width 100%
+    text-align center
+  label
+    display inline-block
+    margin-bottom 0.5rem
 </style>

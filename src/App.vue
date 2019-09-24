@@ -8,13 +8,12 @@
           :style="styleString"
         />
       </div>
-      <div style="clear: both"></div>
       <color-picker @colorChange="changeColor" />
       <border-style-picker @borderChange="changeBorderStyle" />
       <border-width-picker @borderChange="changeBorderWidth" />
       <font-size-picker @fontChange="changeFontSize" />
       <rows-picker @rowsChange="changeWidth" />
-      <button @click="printTable">Test</button>
+      <custom-button @buttonClick="printTable" text="Печать" />
   </div>
 </template>
 
@@ -25,11 +24,18 @@ import BorderStylePicker from './components/border-style-picker.vue';
 import BorderWidthPicker from './components/border-width-picker.vue';
 import FontSizePicker from './components/font-size-picker.vue';
 import RowsPicker from './components/rows-picker.vue';
+import CustomButton from './components/custom-button.vue';
 
 export default {
   name: 'App',
   components: {
-    TableCell, ColorPicker, BorderStylePicker, BorderWidthPicker, FontSizePicker, RowsPicker,
+    TableCell,
+    ColorPicker,
+    BorderStylePicker,
+    BorderWidthPicker,
+    FontSizePicker,
+    RowsPicker,
+    CustomButton,
   },
   data() {
     return {
@@ -65,17 +71,17 @@ export default {
       });
       const WinPrint = window.open('', '', `left=0,top=0,width=${window.screen.width},height=${window.screen.height},
       toolbar=0,scrollbars=0,status=0`);
-
       WinPrint.document.write(`<!DOCTYPE html>
         <html>
           <head>
+            ${stylesHtml}
           </head>
           <body>
-            ${prtHtml}
-            ${stylesHtml}
+            <div style="text-align: center; margin: 0px">
+                ${prtHtml}
+            </div>
           </body>
         </html>`);
-
       WinPrint.document.close();
       WinPrint.focus();
       WinPrint.print();

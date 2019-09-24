@@ -1,11 +1,14 @@
 <template>
-    <div>
-        <div
-            v-for="style in borderStyles"
-            :style="`border-style: ${style}`"
-            @click="handleClick(style)"
-        />
-    </div>
+    <span>
+        <label for="styles">Стиль границ</label><br>
+        <span id="styles" >
+            <div
+                v-for="style in borderStyles"
+                :style="`border-style: ${style}`"
+                @click="handleClick(style)"
+            />
+        </span>
+    </span>
 </template>
 
 <script>
@@ -29,4 +32,6 @@ export default {
       width 50px
       height 50px
       margin 10px
+      cursor pointer
+      display inline-block
 </style>

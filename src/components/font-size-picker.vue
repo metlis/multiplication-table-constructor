@@ -1,6 +1,8 @@
 <template>
     <div>
-        <input type="range" class="custom-range" id="customRange1" v-model="value" min="0" max="60">
+        <label for="customRange2">Размер шрифта</label>
+        <input type="range" class="custom-range-font" id="customRange2"
+               v-model="value" min="0" max="60">
     </div>
 </template>
 
@@ -20,6 +22,8 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  input
+    width 100%
+    text-align center
 </style>

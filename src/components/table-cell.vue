@@ -32,6 +32,7 @@ export default {
     overflow hidden
     display inline-block
     margin-right 1%
+    box-sizing border-box
     p
       padding 0px
       margin 0px

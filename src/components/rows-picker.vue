@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="form-check form-check-inline" v-for="option in rowsOptions" :key="option">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+        <label for="options">Количество ячеек в ряду</label><br>
+        <div v-for="option in rowsOptions" :key="option" id="options">
+            <input type="radio" name="inlineRadioOptions"
                    :id="option" :value="option" v-model="picked">
             <label class="form-check-label" :for="option">{{option}}</label>
         </div>
@@ -13,8 +14,8 @@ export default {
   name: 'rows-picker',
   data() {
     return {
-      rowsOptions: [1, 2, 5, 10],
-      picked: '',
+      rowsOptions: [1, 2, 5],
+      picked: 5,
     };
   },
   watch: {
@@ -25,6 +26,9 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  div
+    display inline-block
+    div
+      margin-top 0.5rem
 </style>
