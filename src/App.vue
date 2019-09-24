@@ -13,6 +13,7 @@
       <border-width-picker @borderChange="changeBorderWidth" />
       <font-size-picker @fontChange="changeFontSize" />
       <rows-picker @rowsChange="changeWidth" />
+      <font-picker @fontChange="changeFont" />
       <custom-button @buttonClick="printTable" text="Печать" />
   </div>
 </template>
@@ -24,6 +25,7 @@ import BorderStylePicker from './components/border-style-picker.vue';
 import BorderWidthPicker from './components/border-width-picker.vue';
 import FontSizePicker from './components/font-size-picker.vue';
 import RowsPicker from './components/rows-picker.vue';
+import FontPicker from './components/font-picker.vue';
 import CustomButton from './components/custom-button.vue';
 
 export default {
@@ -36,6 +38,7 @@ export default {
     FontSizePicker,
     RowsPicker,
     CustomButton,
+    FontPicker,
   },
   data() {
     return {
@@ -43,6 +46,7 @@ export default {
       borderStyle: 'solid',
       borderWidth: 1,
       fontSize: 14,
+      fontFamily: '',
       width: 17,
     };
   },
@@ -61,6 +65,10 @@ export default {
     },
     changeWidth(value) {
       this.width = 100 / value - 3;
+    },
+    changeFont(value) {
+      console.log(value);
+      this.fontFamily = value;
     },
     printTable() {
       const prtHtml = this.$refs.table.innerHTML;
@@ -91,7 +99,8 @@ export default {
   computed: {
     styleString() {
       return `color: ${this.color}; border-style: ${this.borderStyle}; border-color: ${this.color};
-      border-width: ${this.borderWidth}px; font-size: ${this.fontSize}px; width: ${this.width}%`;
+      border-width: ${this.borderWidth}px; font-size: ${this.fontSize}px; font-family: ${this.fontFamily};
+      width: ${this.width}%`;
     },
   },
 };
