@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/metlis/multiplication-table-constructor#readme",
   "dependencies": {
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-color": "^2.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
