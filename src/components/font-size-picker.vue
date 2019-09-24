@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="range" class="custom-range" id="customRange1" v-model="value" min="0" max="40">
+        <input type="range" class="custom-range" id="customRange1" v-model="value" min="0" max="60">
     </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
   name: 'font-size-picker',
   data() {
     return {
-      value: 20,
+      value: 30,
     };
   },
   watch: {

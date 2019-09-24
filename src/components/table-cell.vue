@@ -25,6 +25,12 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="stylus" scoped>
+  div
+    padding 1rem
+    text-align center
+    overflow hidden
+    margin-right 0.5rem
+    p:last-child
+      margin-bottom 0px
 </style>
