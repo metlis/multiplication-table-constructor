@@ -27,10 +27,14 @@ export default {
 
 <style lang="stylus" scoped>
   div
-    padding 1rem
+    padding 0.5rem
     text-align center
     overflow hidden
-    margin-right 0.5rem
-    p:last-child
-      margin-bottom 0px
+    display inline-block
+    margin-right 1%
+    p
+      padding 0px
+      margin 0px
+      :last-child
+        margin-bottom 0px
 </style>

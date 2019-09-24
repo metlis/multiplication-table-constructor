@@ -1,22 +1,20 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div style="display: flex; flex-wrap: wrap; justify-content: center">
-          <table-cell
-            v-for="(item, index) in Array(10)"
-            :key="index"
-            :number="index+1"
-            :style="styleString"
-          />
-        </div>
-        <color-picker @colorChange="changeColor" />
-        <border-style-picker @borderChange="changeBorderStyle" />
-        <border-width-picker @borderChange="changeBorderWidth" />
-        <font-size-picker @fontChange="changeFontSize" />
-        <rows-picker @rowsChange="changeWidth" />
+  <div>
+      <div ref="table">
+        <table-cell
+          v-for="(item, index) in Array(10)"
+          :key="index"
+          :number="index+1"
+          :style="styleString"
+        />
       </div>
-    </div>
+      <div style="clear: both"></div>
+      <color-picker @colorChange="changeColor" />
+      <border-style-picker @borderChange="changeBorderStyle" />
+      <border-width-picker @borderChange="changeBorderWidth" />
+      <font-size-picker @fontChange="changeFontSize" />
+      <rows-picker @rowsChange="changeWidth" />
+      <button @click="printTable">Test</button>
   </div>
 </template>
 
@@ -39,7 +37,7 @@ export default {
       borderStyle: 'solid',
       borderWidth: 1,
       fontSize: 14,
-      width: 18,
+      width: 17,
     };
   },
   methods: {
@@ -56,7 +54,32 @@ export default {
       this.fontSize = value;
     },
     changeWidth(value) {
-      this.width = 100 / value - 2;
+      this.width = 100 / value - 3;
+    },
+    printTable() {
+      const prtHtml = this.$refs.table.innerHTML;
+      let stylesHtml = '';
+      const nodes = [...document.querySelectorAll('link[rel="stylesheet"], style')];
+      nodes.forEach((node) => {
+        stylesHtml += node.outerHTML;
+      });
+      const WinPrint = window.open('', '', `left=0,top=0,width=${window.screen.width},height=${window.screen.height},
+      toolbar=0,scrollbars=0,status=0`);
+
+      WinPrint.document.write(`<!DOCTYPE html>
+        <html>
+          <head>
+          </head>
+          <body>
+            ${prtHtml}
+            ${stylesHtml}
+          </body>
+        </html>`);
+
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
+      WinPrint.close();
     },
   },
   computed: {
@@ -70,7 +93,8 @@ export default {
 
 <style lang="stylus" scoped>
   div
-    margin-top 0.3rem
-    margin-bottom 1rem
+    width 100%
+    margin-top 0.5rem
+    margin-bottom 0.5rem
     text-align center
 </style>
