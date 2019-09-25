@@ -29,7 +29,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.styl(us)?$/,
+        test: /\.(styl(us)?|css)$/,
         use: [
           'vue-style-loader',
           {
