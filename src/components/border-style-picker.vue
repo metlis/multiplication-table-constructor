@@ -1,14 +1,15 @@
 <template>
-    <span>
+    <div>
         <label for="styles">Стиль границ</label><br>
-        <span id="styles" >
+        <div id="styles" >
             <div
                 v-for="style in borderStyles"
+                :class="$style.container"
                 :style="generateStyle(style)"
                 @click="handleClick(style)"
             />
-        </span>
-    </span>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -37,8 +38,8 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
-    div
+<style lang="stylus" module>
+    .container
       width 3rem
       height 3rem
       margin 0.5rem
