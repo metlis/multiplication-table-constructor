@@ -1,23 +1,32 @@
 <template>
     <div>
-        <label for="customRange2">Размер шрифта</label>
+        <label for="customRange2">Размер шрифта ({{textValue}})</label>
         <input type="range" class="custom-range-font" id="customRange2"
-               v-model="value" min="0" max="60">
+               v-model="fontSizeValue" min="1" max="60">
     </div>
 </template>
 
 <script>
 export default {
   name: 'font-size-picker',
+  props: ['localFontSize'],
   data() {
     return {
-      value: 30,
+      fontSizeValue: 14,
     };
   },
+  computed: {
+    textValue() {
+      return `${this.fontSizeValue}px`;
+    },
+  },
   watch: {
-    value(val) {
+    fontSizeValue(val) {
       this.$emit('fontChange', val);
     },
+  },
+  created() {
+    if (this.localFontSize) this.fontSizeValue = this.localFontSize;
   },
 };
 </script>

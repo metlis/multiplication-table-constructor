@@ -13,10 +13,11 @@ export default {
   components: {
     'slider-picker': Slider,
   },
+  props: ['localColor'],
   data() {
     return {
       colors: {
-        hex: '#000000',
+        hex: '',
       },
     };
   },
@@ -24,6 +25,9 @@ export default {
     'colors.hex': function (val) {
       this.$emit('colorChange', val);
     },
+  },
+  created() {
+    if (this.localColor) this.colors.hex = this.localColor;
   },
 };
 </script>

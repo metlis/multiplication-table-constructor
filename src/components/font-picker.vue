@@ -1,7 +1,7 @@
 <template>
     <div>
         <label for="fontSelect">Шрифт</label><br>
-        <select id="fontSelect" v-model="font">
+        <select id="fontSelect" v-model="activeFont">
             <option v-for="font in fonts" :key="font">
                 {{font}}
             </option>
@@ -12,16 +12,20 @@
 <script>
 export default {
   name: 'font-picker',
+  props: ['localFontFamily'],
   data() {
     return {
       fonts: ['serif', 'sans-serif', 'monospace'],
-      font: 'serif',
+      activeFont: 'serif',
     };
   },
   watch: {
-    font(val) {
+    activeFont(val) {
       this.$emit('fontChange', val);
     },
+  },
+  created() {
+    if (this.localFontFamily) this.activeFont = this.localFontFamily;
   },
 };
 </script>

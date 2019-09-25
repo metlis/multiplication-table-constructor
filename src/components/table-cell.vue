@@ -3,7 +3,6 @@
         <p
             v-for="(item, index) in Array(10)"
             :key="index"
-            @click="handleRowClick(index+1)"
         >
             {{number}}*{{index+1}}={{number*(index+1)}}
         </p>
@@ -13,13 +12,10 @@
 <script>
 export default {
   name: 'TableCell',
-  props: ['number'],
+  props: ['id', 'number'],
   methods: {
     handleCellClick(num) {
-      console.log(num);
-    },
-    handleRowClick(num) {
-      console.log(num);
+      this.$emit('cellClick', this.id);
     },
   },
 };
@@ -33,6 +29,7 @@ export default {
     display inline-block
     margin-right 1%
     box-sizing border-box
+    cursor pointer
     p
       padding 0px
       margin 0px
