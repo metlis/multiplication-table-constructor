@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="styles">Border styles</label><br>
+        <label for="styles">Estilos de borde</label><br>
         <div id="styles" >
             <div
                 v-for="style in borderStyles"

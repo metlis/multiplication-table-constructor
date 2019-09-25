@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="options">Number of cells in the row</label><br>
+        <label for="options">Número de celdas en la fila</label><br>
         <div v-for="option in rowsOptions" :key="option" id="options">
             <input type="radio" name="inlineRadioOptions"
                    :id="option" :value="option" v-model="picked">

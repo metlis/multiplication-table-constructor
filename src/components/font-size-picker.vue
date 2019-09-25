@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="customRange2">Font size ({{textValue}})</label>
+        <label for="customRange2">Tamaño de fuente ({{textValue}})</label>
         <input type="range" class="custom-range-font" id="customRange2"
                v-model="fontSizeValue" min="1" max="60">
     </div>

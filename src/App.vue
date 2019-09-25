@@ -17,7 +17,7 @@
       <font-size-picker @fontChange="changeFontSize" />
       <rows-picker @rowsChange="changeWidth" />
       <font-picker @fontChange="changeFont" />
-      <custom-button @buttonClick="printTable" text="Print table" />
+      <custom-button @buttonClick="printTable" text="Imprime la tabla" />
       <context-menu @cellChange="changeCell" @windowClose="closeContextMenu"
                     :localStyle="localStyle" v-if="contextMenuVisible" />
   </div>
