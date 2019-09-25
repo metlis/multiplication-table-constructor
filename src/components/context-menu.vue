@@ -7,9 +7,9 @@
                              @borderChange="changeBorderWidth" />
         <font-size-picker :localFontSize="localFontSize" @fontChange="changeFontSize" />
         <font-picker :localFontFamily="localFontFamily" @fontChange="changeFontFamily" /><br>
+        <custom-button @buttonClick="closeWindow" text="Закрыть" />
         <custom-button @buttonClick="revertChanges" color="#ebbdb5" text="Сбросить"
                        v-if="color || borderStyle || borderWidth || fontFamily || fontSize" />
-        <custom-button @buttonClick="closeWindow" color="#ebbdb5" text="Закрыть" />
     </div>
 </template>
 
