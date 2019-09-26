@@ -31,4 +31,5 @@ export default {
     display inline-block
     div
       margin-top 0.5rem
+      margin-right 0.5rem
 </style>
