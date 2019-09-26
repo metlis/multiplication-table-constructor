@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.context">
+    <div :class="$style.context" :style="`top: ${offset+20}px`">
         <color-picker :localColor="localColor" @colorChange="changeColor" /><br>
         <border-style-picker :localBorderStyle="localBorderStyle"
                              @borderChange="changeBorderStyle" />
@@ -26,7 +26,7 @@ export default {
   components: {
     ColorPicker, BorderStylePicker, FontPicker, CustomButton, BorderWidthPicker, FontSizePicker,
   },
-  props: ['localStyle'],
+  props: ['localStyle', 'offset'],
   data() {
     return {
       color: '',
@@ -126,11 +126,10 @@ export default {
 
 <style lang="stylus" module>
   .context
-      width 20rem !important
+      max-width 35rem
       padding 1rem
       border 1px solid lightgray
       position absolute
-      top 0
       left 0
       right 0
       margin-left auto

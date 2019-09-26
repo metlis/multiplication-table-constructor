@@ -19,7 +19,8 @@
       <font-picker @fontChange="changeFont" />
       <custom-button @buttonClick="printTable" text="Imprime la tabla" />
       <context-menu @cellChange="changeCell" @windowClose="closeContextMenu"
-                    :localStyle="localStyle" v-if="contextMenuVisible" />
+                    :localStyle="localStyle" :offset="contextMenuOffset"
+                    v-if="contextMenuVisible" />
   </div>
 </template>
 
@@ -142,6 +143,9 @@ export default {
         return this.localStyles[this.cellClicked];
       }
       return '';
+    },
+    contextMenuOffset() {
+      return this.$refs.table.offsetTop;
     },
   },
 };
