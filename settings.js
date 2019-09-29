@@ -1,2 +1,2 @@
-const domain = 'localhost:3001';
+const domain = 'pdf.konspekteka.ru';
 export default domain;
