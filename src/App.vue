@@ -113,7 +113,7 @@ export default {
     },
     savePdf(format) {
       const table = this.$refs.table.innerHTML;
-      fetch(`http://${domain}/htmlPdf`, {
+      fetch(`http://${domain}/html-pdf`, {
         method: 'POST',
         mode: 'cors',
         headers: {

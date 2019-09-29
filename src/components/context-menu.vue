@@ -32,13 +32,16 @@ export default {
       color: '',
       borderStyle: '',
       borderWidth: '',
+      borderColor: '',
       fontFamily: '',
       fontSize: '',
     };
   },
   methods: {
     changeColor(value) {
+      if (value === '#000000') return;
       this.color = value;
+      this.borderColor = value;
     },
     changeBorderStyle(value) {
       this.borderStyle = value;
@@ -59,6 +62,7 @@ export default {
       this.color = '';
       this.borderStyle = '';
       this.borderWidth = '';
+      this.borderColor = '';
       this.fontFamily = '';
       this.fontSize = '';
     },
@@ -67,6 +71,7 @@ export default {
         color: this.color,
         borderStyle: this.borderStyle,
         borderWidth: this.borderWidth,
+        borderColor: this.borderColor,
         fontFamily: this.fontFamily,
         fontSize: this.fontSize,
       });
