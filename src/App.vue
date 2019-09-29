@@ -27,12 +27,12 @@
 <script>
 import Vue from 'vue';
 import TableCell from './components/table-cell.vue';
-import ColorPicker from './components/color-picker.vue';
-import BorderStylePicker from './components/border-style-picker.vue';
-import BorderWidthPicker from './components/border-width-picker.vue';
-import FontSizePicker from './components/font-size-picker.vue';
-import RowsPicker from './components/rows-picker.vue';
-import FontPicker from './components/font-picker.vue';
+import ColorPicker from './components/pickers/color-picker.vue';
+import BorderStylePicker from './components/pickers/border-style-picker.vue';
+import BorderWidthPicker from './components/pickers/border-width-picker.vue';
+import FontSizePicker from './components/pickers/font-size-picker.vue';
+import RowsPicker from './components/pickers/rows-picker.vue';
+import FontPicker from './components/pickers/font-picker.vue';
 import CustomButton from './components/custom-button.vue';
 import ContextMenu from './components/context-menu.vue';
 

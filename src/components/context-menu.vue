@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import ColorPicker from './color-picker.vue';
-import BorderStylePicker from './border-style-picker.vue';
-import BorderWidthPicker from './border-width-picker.vue';
-import FontPicker from './font-picker.vue';
+import ColorPicker from './pickers/color-picker.vue';
+import BorderStylePicker from './pickers/border-style-picker.vue';
+import BorderWidthPicker from './pickers/border-width-picker.vue';
+import FontPicker from './pickers/font-picker.vue';
 import CustomButton from './custom-button.vue';
-import FontSizePicker from './font-size-picker.vue';
+import FontSizePicker from './pickers/font-size-picker.vue';
 
 export default {
   name: 'context-menu',
