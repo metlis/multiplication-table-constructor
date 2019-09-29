@@ -18,6 +18,8 @@
       <rows-picker @rowsChange="changeWidth" />
       <font-picker @fontChange="changeFont" />
       <custom-button @buttonClick="printTable" text="Print the table" />
+      <custom-button @buttonClick="savePdf('landscape')" text="PDF horizontal" />
+      <custom-button @buttonClick="savePdf('portrait')" text="PDF vertical" />
       <context-menu @cellChange="changeCell" @windowClose="closeContextMenu"
                     :localStyle="localStyle" :offset="contextMenuOffset"
                     v-if="contextMenuVisible" />
@@ -27,14 +29,15 @@
 <script>
 import Vue from 'vue';
 import TableCell from './components/table-cell.vue';
-import ColorPicker from './components/color-picker.vue';
-import BorderStylePicker from './components/border-style-picker.vue';
-import BorderWidthPicker from './components/border-width-picker.vue';
-import FontSizePicker from './components/font-size-picker.vue';
-import RowsPicker from './components/rows-picker.vue';
-import FontPicker from './components/font-picker.vue';
+import ColorPicker from './components/pickers/color-picker.vue';
+import BorderStylePicker from './components/pickers/border-style-picker.vue';
+import BorderWidthPicker from './components/pickers/border-width-picker.vue';
+import FontSizePicker from './components/pickers/font-size-picker.vue';
+import RowsPicker from './components/pickers/rows-picker.vue';
+import FontPicker from './components/pickers/font-picker.vue';
 import CustomButton from './components/custom-button.vue';
 import ContextMenu from './components/context-menu.vue';
+import domain from '../settings';
 
 export default {
   name: 'App',
@@ -99,15 +102,75 @@ export default {
       }
     },
     printTable() {
-      const prtHtml = this.$refs.table.innerHTML;
+      const table = this.$refs.table.innerHTML;
+      const WinPrint = window.open('', '', `left=0,top=0,width=${window.screen.width},height=${window.screen.height},
+      toolbar=0,scrollbars=0,status=0`);
+      WinPrint.document.write(this.htmlString(table));
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
+      WinPrint.close();
+    },
+    savePdf(format) {
+      const table = this.$refs.table.innerHTML;
+      fetch(`https://${domain}/html-pdf`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          html: this.htmlString(table),
+          orientation: format,
+        }),
+      })
+        .then((response) => {
+          const reader = response.body.getReader();
+          return new ReadableStream({
+            start(controller) {
+              return pump();
+              function pump() {
+                return reader.read().then(({ done, value }) => {
+                  // When no more data needs to be consumed, close the stream
+                  if (done) {
+                    controller.close();
+                    return;
+                  }
+                  // Enqueue the next data chunk into our target stream
+                  controller.enqueue(value);
+                  // eslint-disable-next-line consistent-return
+                  return pump();
+                });
+              }
+            },
+          });
+        })
+        .then(stream => new Response(stream))
+        .then(response => response.blob())
+        .then(blob => URL.createObjectURL(blob))
+        .then((url) => {
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'table.pdf';
+          link.click();
+        })
+        .catch(err => console.error(err));
+    },
+    showContextMenu(value) {
+      this.cellClicked = value;
+      this.contextMenuVisible = true;
+    },
+    closeContextMenu() {
+      this.cellClicked = '';
+      this.contextMenuVisible = false;
+    },
+    htmlString(prtHtml) {
       let stylesHtml = '';
       const nodes = [...document.querySelectorAll('link[rel="stylesheet"], style')];
       nodes.forEach((node) => {
         stylesHtml += node.outerHTML;
       });
-      const WinPrint = window.open('', '', `left=0,top=0,width=${window.screen.width},height=${window.screen.height},
-      toolbar=0,scrollbars=0,status=0`);
-      WinPrint.document.write(`<!DOCTYPE html>
+      const doc = `<!DOCTYPE html>
         <html>
           <head>
             ${stylesHtml}
@@ -117,19 +180,8 @@ export default {
                 ${prtHtml}
             </div>
           </body>
-        </html>`);
-      WinPrint.document.close();
-      WinPrint.focus();
-      WinPrint.print();
-      WinPrint.close();
-    },
-    showContextMenu(value) {
-      this.cellClicked = value;
-      this.contextMenuVisible = true;
-    },
-    closeContextMenu() {
-      this.cellClicked = '';
-      this.contextMenuVisible = false;
+        </html>`;
+      return doc;
     },
   },
   computed: {
