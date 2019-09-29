@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="fontSelect">Font type</label><br>
+        <label for="fontSelect">Тип шрифта</label><br>
         <select id="fontSelect" v-model="activeFont">
             <option v-for="font in fonts" :key="font">
                 {{font}}

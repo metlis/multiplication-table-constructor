@@ -17,9 +17,9 @@
       <font-size-picker @fontChange="changeFontSize" />
       <rows-picker @rowsChange="changeWidth" />
       <font-picker @fontChange="changeFont" />
-      <custom-button @buttonClick="printTable" text="Print the table" />
-      <custom-button @buttonClick="savePdf('landscape')" text="PDF horizontal" />
-      <custom-button @buttonClick="savePdf('portrait')" text="PDF vertical" />
+      <custom-button @buttonClick="printTable" text="Печать таблицы" />
+      <custom-button @buttonClick="savePdf('landscape')" text="PDF горизонталный" />
+      <custom-button @buttonClick="savePdf('portrait')" text="PDF вертикальный" />
       <context-menu @cellChange="changeCell" @windowClose="closeContextMenu"
                     :localStyle="localStyle" :offset="contextMenuOffset"
                     v-if="contextMenuVisible" />

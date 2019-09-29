@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="colorPicker">Color</label><br>
+        <label for="colorPicker">Цвет</label><br>
         <slider-picker id="colorPicker" v-model="colors" />
     </div>
 </template>

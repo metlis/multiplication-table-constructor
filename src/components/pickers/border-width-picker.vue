@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label for="customRange1">Border width ({{textValue}})</label>
+        <label for="customRange1">Ширина границ ({{textValue}})</label>
         <input type="range" class="custom-range-width" id="customRange1"
                v-model="widthValue" min="1" max="20">
     </div>
