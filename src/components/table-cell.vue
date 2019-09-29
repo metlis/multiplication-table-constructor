@@ -4,7 +4,7 @@
             v-for="(item, index) in Array(10)"
             :key="index"
         >
-            {{number}}*{{index+1}}={{number*(index+1)}}
+            {{number*(index+1)}}:{{number}}={{number*(index+1)/number}}
         </p>
     </div>
 </template>
