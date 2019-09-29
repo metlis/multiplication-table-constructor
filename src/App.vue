@@ -168,6 +168,7 @@ export default {
       let stylesHtml = '';
       const nodes = [...document.querySelectorAll('link[rel="stylesheet"], style')];
       nodes.forEach((node) => {
+        if (node.href) return;
         stylesHtml += node.outerHTML;
       });
       const doc = `<!DOCTYPE html>
